@@ -1,0 +1,21 @@
+---
+title: "Lab 1 Notebook"
+output: html_notebook
+---
+
+# Getting Started in R
+Online [Introduction to R Statistical Programming](https://sphweb.bumc.bu.edu/otlt/MPH-Modules/PH717-QuantCore/PH717-IntroR/) module. 
+- PDF version available on Blackboard
+- Labs > R-Help for Basic Methods BS704.pdf
+- datasets for lab on Blackboard
+
+```{r FILE LOCATIONS}
+InFile_location = file.choose()
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
