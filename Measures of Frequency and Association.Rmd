@@ -1,0 +1,112 @@
+---
+title: "Session 3 Notebook"
+output: html_notebook
+---
+
+```{r FILE LOCATIONS}
+InFile_location = file.choose()
+```
+
+
+# Measures of Disease Frequency and Association
+
+## Question 1a--Prevalence
+
+In 2016, there were 21 million adults with Type 2 Diabetes out of a total of 244,186,465 adults in the US. 
+
+(a) Calculate the prevalence of Type 2 Diabetes in adults in the US in 2016.
+
+```{r}
+21*(10^6) / 244186465
+```
+
+(b)	Interpret the prevalence you calculated in part a.
+
+```{r}
+
+```
+
+## Question 1b
+
+In 2018, a survey was conducted of 1,891 children 12-23 months of age in Zambia.  Among these children, 1,719 reported receiving the measles vaccine.
+
+(a)	Calculate the prevalence of measles vaccination among these 12-23 month-old children in Zambia in 2018.
+
+
+
+(b)	Interpret the prevalence you calculated in part a.
+
+
+
+## Question 2
+
+Who is part of the at risk population? Consider the following two examples.
+
+(a)	Who is at risk for influenza infection?
+
+
+
+(b)	Who is at risk for incident endometrial cancer?
+
+
+## Question 3
+In a cohort of pregnant women receiving prenatal care at BMC during a 1-year period from 2014-2015, there were 252 deliveries. Of these newborns, 13 were classified as low birthweight (<2,500 grams). 
+
+(a)	Calculate the 1-year cumulative incidence (risk) of low birthweight in this group.
+
+
+
+(b)	Interpret the 1-year cumulative incidence (risk) you calculated in part a.
+
+
+
+(c)	Compute the 1-year cumulative incidence (risk) in R using the following code.
+
+```{r Cumulative Incidence}
+DrugUse <- read.csv( file = InFile_location)
+
+DrugUse$LowBirthWt <- with(DrugUse,
+                           ifelse (BirthWt <2500, 1, 0)
+)
+
+with(DrugUse, 
+     table(DrugUse$LowBirthWt)
+)
+
+with(DrugUse,
+     prop.table( table(LowBirthWt) )
+)
+
+```
+
+(d)	Suppose we want to estimate the cumulative incidence (risk) of low birthweight in first pregnancies. Of the 252 deliveries, 67.1% of infants were a first pregnancy. Of these newborns, 11 were classified as low birthweight. Calculate the one-year cumulative incidence (risk) of low birthweight in this group.
+
+
+## Question 4
+Let’s discuss issues with tracing people over a longer period of time.
+
+(a)	What are some potential problems? What might happen to people?
+
+
+(b)	Can you think of some populations where a long follow-up period might be especially problematic?
+
+
+## Question 5
+In an open cohort of children under 5 in the UK, the effect of socio-economic deprivation on injury was examined from 1990-2009. A total of 20,668 fractures, 15,796 burns and 10,155 poisonings were reported over a total of 2,725,000 person-years. 
+
+(a)	Calculate the incidence rate of burns among children under 5 in the UK from 1990-2009.
+
+
+
+(b)	Interpret the incidence rate you calculated in part a.
+
+
+## Question 6
+In a cohort of pregnant women receiving prenatal care at BMC from 2014-2015, there were 252 deliveries. Of these newborns, 13 were classified as low birthweight (<2,500 grams). Among 130 pregnant women who ever used cocaine during pregnancy, there were 9 newborns with low birthweight. 
+
+(a)	Calculate the risk difference (absolute effect) for ever using cocaine during pregnancy, compared to never, on the incidence of low birthweight at BMC from 2014-2015.
+
+
+(b)	Interpret the risk difference you calculated in part a.
+
+

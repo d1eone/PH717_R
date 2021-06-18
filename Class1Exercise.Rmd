@@ -1,0 +1,130 @@
+---
+title: "Class 1 Notebook"
+output: html_notebook
+---
+
+We will demonstrate:
+1. importing data into R from .csv files
+2. generating frequencies  
+3. calculating proportions
+4. creating histograms
+5. missing values in R
+
+### Sets all the file locations
+- Someone can come in and change the file location to their own computer
+- Better at the top of your code
+- one place to change so it runs for everyone (reproducible)
+
+```{r Sets_file_locations}
+# lets you a windows interface to pick the file location and store in a variable
+MyFileLocation = file.choose()
+MyFileLocation
+```
+
+### Importing Data
+- read.csv function convert a comma separated text file to a dataframe
+- do not need to specify file = ""
+- many options
+- use ?read.csv to learn more
+
+```{r IMPORT DATA}
+infantcarseat<-read.csv( file = MyFileLocation)
+names(infantcarseat) #shows you variables in infantcarseat DataFrame
+```
+
+We can even look at the first few rows (in console)
+
+```{r viewing first few rows of a DataFrame}
+head(infantcarseat)
+```
+
+#### Notes:
+In RStudio, we can just click on the DataFrame in the Environment tab and open it
+
+### Attaching variables to global environment
+- allows you to reference just the variable
+- does not require you to specify the dataframe
+- can cause problems if you attach >2 datasets with same variable names
+- most data scientists DO NOT DO THIS.
+
+```{r Attaching variables from infantcarseat}
+attach(infantcarseat)
+carseat
+```
+
+#### Notes:
+- Look at window-panes on the left
+- all variables are now (separately) loaded in the "Environment" tab
+
+You can always reference a variable using dollar ($) character
+- infantcarseat$carseat
+- infantcarseat$sex
+- infantcarseat$surfactant
+
+For simplicity I will just use the variable names loaded into global.env
+
+```{r Using Table to explore frequency counts}
+table(carseat)
+table(o2sat)
+table(gage)
+table(surfactant)
+table(failreason)
+table(sex)
+```
+
+We can also use the summary() function to explore the data
+
+```{r Using summary function for frequency counts}
+summary(sex)
+summary(failreason)
+summary(o2sat)
+```
+
+# Functions for Descriptive Statistics
+
+```{r Descriptive Stats}
+mean(o2sat)
+sd(o2sat)
+mean(gage)
+sd(gage)
+table(sex)
+prop.table(table(sex))
+table(carseat)
+prop.table(table(carseat))
+table(caffeine)
+prop.table(table(caffeine))
+table(surfactant)
+prop.table(table(surfactant))
+table(failreason)
+prop.table(table(failreason))
+```
+
+# Visualizing Descriptive Stats and data
+- ?hist
+```{r Histograms}
+hist(o2sat,main="Histogram of Oxygen Saturation",xlab="Oxygen Saturation")
+hist(gage,main="Histogram of Gestational Age", xlab="Gestational Age")
+```
+```{r Boxplots}
+boxplot( x = o2sat,
+         main = "Oxygen saturation",
+         ylab = "%conc")
+```
+
+
+### Missing values in R
+- NA indicates "missing"
+- many functions will skip NA values
+- may need to use function options to use or show NA values
+
+```{r missing values}
+Vector.1 = c(1,3,5,9)
+Vector.2 = c(2,4,NA,8)
+VectorSum = Vector.1 + Vector.2
+VectorSum
+summary(VectorSum)
+table(VectorSum)
+table(VectorSum, useNA = "ifany")
+table(failreason)
+```
+
